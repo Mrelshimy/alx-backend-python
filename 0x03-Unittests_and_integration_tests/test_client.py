@@ -32,11 +32,10 @@ class TestGithubOrgClient(unittest.TestCase):
             self.assertEqual(obj._public_repos_url, 'abc')
 
     @patch('client.get_json')
-    def test_public_repos(self, url, mock_get):
+    def test_public_repos(self, mock_get):
         """ test_public repos method """
         return_value = {'a': 'b'}
         mock_get.return_value = return_value
         with patch.object(GithubOrgClient, '_public_repos_url',
                           new_callable=PropertyMock) as org_mock:
             org_mock.return_value = 'abc'
-            
